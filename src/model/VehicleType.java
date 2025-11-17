@@ -1,4 +1,5 @@
 package model;
 
-public class VehicleType {
+public enum VehicleType {
+    CAR, MOTORCYCLE, VAN
 }

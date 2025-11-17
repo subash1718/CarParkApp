@@ -1,4 +1,6 @@
 package model;
 
-public class PaymentResult {
-}
+/**
+ * sealed interface and permitted implementations (Java 17+ / 21)
+ */
+public sealed interface PaymentResult permits PaymentSuccess, PaymentFailure { }
