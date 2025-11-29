@@ -1,8 +1,6 @@
 package model;
 
-/**
- * abstract base class - shows this() vs this. in constructors, method overloading
- */
+
 public abstract class Vehicle {
     protected final String regNumber;
     protected final int wheels;

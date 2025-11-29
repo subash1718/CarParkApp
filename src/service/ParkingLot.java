@@ -8,10 +8,6 @@ import java.time.Instant;
 import java.util.*;
 import java.util.function.Predicate;
 
-/**
- * core parking lot functionality
- * demonstrates varargs, LVTI (var), defensive copying, lambdas and method references, arrays/ArrayList
- */
 public class ParkingLot {
     private final List<ParkingSpot> spots = new ArrayList<>();
     private final Map<String, Ticket> active = new HashMap<>();
@@ -27,6 +23,12 @@ public class ParkingLot {
     public List<ParkingSpot> getSpots() {
         return new ArrayList<>(spots);
     }
+    // Java 23 feature: Sequenced Collections API (List.getLast)
+    public Ticket getMostRecentTicket() {
+        if (history.isEmpty()) return null;
+        return history.getLast(); // Java 23 method
+    }
+
 
     // park vehicle - checked exception if no spot
     public Ticket park(Vehicle v) throws NoAvailableSpotException {
@@ -41,6 +43,7 @@ public class ParkingLot {
         var ticket = new Ticket(ticketId, v.getRegNumber(), v.getType(), Instant.now());
         active.put(v.getRegNumber(), ticket);
         history.add(ticket);
+        history.addLast(ticket);  // Java 23 method
         return ticket;
     }
 
@@ -61,6 +64,10 @@ public class ParkingLot {
         // method reference when printing receipts elsewhere; here call pay
         return paymentService.pay(regNumber, total);
     }
+    public PaymentService getPaymentService() {
+        return paymentService;
+    }
+
 
     // list active tickets (method reference)
     public void listActive() {

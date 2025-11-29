@@ -13,7 +13,7 @@ public final class ImmutableReceipt {
     public ImmutableReceipt(String receiptId, double amount, Instant time) {
         this.receiptId = receiptId;
         this.amount = amount;
-        this.time = time; // Instant is immutable; if mutable, we'd copy
+        this.time = time;
     }
 
     public String getReceiptId() { return receiptId; }

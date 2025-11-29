@@ -1,7 +1,7 @@
 package model;
 
 public class Car extends Vehicle {
-    private String color; // not final so we can set once via the main constructor
+    private String color;
 
     // primary constructor that sets color
     public Car(String regNumber, String color) {
